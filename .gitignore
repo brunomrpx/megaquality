@@ -1,2 +1,5 @@
 *.txt
 *.swp
+
+# Diretório temporário
+./application/tmp/
