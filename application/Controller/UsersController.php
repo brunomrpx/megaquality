@@ -4,6 +4,17 @@ App::uses('AppController', 'Controller');
 
 class UsersController extends AppController {
 
+    public function beforeRender() {
+        if ($this->User->isLogged()) {
+            return $this->redirect(
+                array(
+                    'controller' => 'pages',
+                    'action' => 'home'
+                )
+            );
+        }
+    }
+
     public function login() {
         if ($this->request->is('post')) {
             if ($this->Auth->login()) {

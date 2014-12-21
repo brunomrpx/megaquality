@@ -52,6 +52,6 @@ class AppController extends Controller {
         // Se o usuário estiver logado
         if ($isLogged) {
             $this->layout = 'logged';
-        }
+        } 
     }
 }
