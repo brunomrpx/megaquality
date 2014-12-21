@@ -10,9 +10,9 @@ USE `db_megaquality`;
  * Usuarios
  */
 CREATE TABLE `users` (
-    `id` INT NOT NULL,
+    `id` INT NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(100) NOT NULL,
     `username` VARCHAR(50) NOT NULL,
-    `password` VARCHAR(50) NOT NULL,
+    `password` VARCHAR(100) NOT NULL,
     PRIMARY KEY(`id`)
 ) ENGINE=InnoDB;

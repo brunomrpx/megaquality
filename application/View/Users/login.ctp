@@ -4,17 +4,17 @@
             <div class="col-sm-12 col-lg-4 col-lg-offset-4">
                 <div class="form-wrap">
                 <h2>Login</h2>
-                <form role="form" action="javascript:;" method="post" id="login-form" autocomplete="off">
+                <?php echo $this->Form->create('User'); ?>
                     <div class="form-group">
                         <label for="username" class="sr-only">Usuário</label>
-                        <input type="text" name="username" id="username" class="form-control" placeholder="Usuário">
+                        <input type="text" name="data[User][username]" id="UserUsername" class="form-control" placeholder="Usuário" required>
                     </div>
                     <div class="form-group">
                         <label for="password" class="sr-only">Senha</label>
-                        <input type="password" name="key" id="password" class="form-control" placeholder="Senha">
+                        <input type="password" name="data[User][password]" id="UserPassword" class="form-control" placeholder="Senha" required>
                     </div>
                     <input type="submit" id="btn-login" class="btn btn-primary btn-lg btn-block" value="Entrar">
-                </form>
+                <?php echo $this->Form->end(); ?>
                 <hr>
                 </div>
             </div>

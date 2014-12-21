@@ -4,4 +4,4 @@
 *.bak
 
 # Diretório temporário
-./application/tmp/
+/application/tmp/
