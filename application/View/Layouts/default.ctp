@@ -35,7 +35,7 @@
               </div>
             </nav>
         </div>
-		<div id="content">
+		<div id="container">
 			<?php echo $this->Session->flash(); ?>
 			<?php echo $this->fetch('content'); ?>
 		</div>

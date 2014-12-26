@@ -27,8 +27,8 @@ class AppController extends Controller {
         'Session',
         'Auth' => array(
             'loginRedirect' => array(
-                'controller' => 'pages',
-                'action' => 'home'
+                'controller' => 'projects',
+                'action' => 'all'
             ),
             'logoutRedirect' => array(
                 'controller' => 'users',
@@ -46,10 +46,8 @@ class AppController extends Controller {
      * Controle dos templates
      */
     public function beforeFilter() {
-        // Atribuindo o template padrão
         $this->layout = 'default';
         $isLogged = $this->Auth->user();
-        // Se o usuário estiver logado
         if ($isLogged) {
             $this->layout = 'logged';
         } 

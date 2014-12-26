@@ -40,14 +40,20 @@
                   <a class="navbar-brand" href="#">Megaquality</a>
                 </div>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                  <ul class="nav navbar-nav">
+                      <li><a href="#">Itens</a></li>
+                      <li><a href="#">Checklists</a></li>
+                      <li><a href="#">Fases</a></li>
+                      <li><a href="#">Templates</a></li>
+                  </ul>
                   <ul class="nav navbar-nav navbar-right">
                     <li class="active"><?php echo $this->Html->link('Sair', array('controller' => 'users', 'action' => 'logout'));  ?></li>
                   </ul>
-                </div><!-- /.navbar-collapse -->
-              </div><!-- /.container-fluid -->
+                </div>
+              </div>
             </nav>
         </div>
-		<div id="content">
+		<div id="content" class="container">
 			<?php echo $this->Session->flash(); ?>
 			<?php echo $this->fetch('content'); ?>
 		</div>
