@@ -1,6 +1,6 @@
 <div class="container">
     <h2>Projetos</h2>    
-    <table class="table table-striped table-bordered table-hover table-condensed table-response">
+    <table class="table table-striped table-hover table-responsive">
        <tr>
             <th>Nome</th>
             <th>Equipe</th>
