@@ -29,7 +29,6 @@
 		<div id="header" class="text-center">
             <nav class="navbar navbar-default" role="navigation">
               <div class="container-fluid text-center">
-                <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
                   <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
@@ -37,14 +36,15 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                   </button>
-                  <a class="navbar-brand" href="#">Megaquality</a>
+                  <!-- <a class="navbar-brand" href="#">Megaquality</a> -->
+                  <?php  echo $this->Html->link('Megaquality', array('controller' => '/'), array('class' => 'navbar-brand'));?>
                 </div>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                   <ul class="nav navbar-nav">
-                      <li><a href="#">Itens</a></li>
-                      <li><a href="#">Checklists</a></li>
-                      <li><a href="#">Fases</a></li>
-                      <li><a href="#">Templates</a></li>
+                      <li><?php  echo $this->Html->link('Items', array('controller' => 'items'));?></li>
+                      <li><?php  echo $this->Html->link('Checklists', array('controller' => 'checklists'));?></li>
+                      <li><?php  echo $this->Html->link('Fases', array('controller' => 'stages'));?></li>
+                      <li><?php  echo $this->Html->link('Templates', array('controller' => 'auditings'));?></li>
                   </ul>
                   <ul class="nav navbar-nav navbar-right">
                     <li class="active"><?php echo $this->Html->link('Sair', array('controller' => 'users', 'action' => 'logout'));  ?></li>
