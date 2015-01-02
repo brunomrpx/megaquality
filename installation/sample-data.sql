@@ -1,6 +1,3 @@
-DELETE FROM `users`;
-DELETE FROM `items`;
-
 /*
  * username = admin
  * password = teste
