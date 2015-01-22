@@ -9,7 +9,7 @@ class UsersController extends AppController {
             return $this->redirect(
                 array(
                     'controller' => 'projects',
-                    'action' => 'all'
+                    'action' => 'index'
                 )
             );
         }

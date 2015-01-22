@@ -70,8 +70,6 @@ class Checklist extends AppModel {
              array('checklist_id' => $this->field('id'))
         );
 
-        var_dump($selectedItems);
-
         return $selectedItems;
     }
 

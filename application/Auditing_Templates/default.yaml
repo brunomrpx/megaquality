@@ -1,0 +1,46 @@
+---
+name: Default
+stages:
+    - name: Marco do Planejamento
+      checklist:
+            - name: Requisitos
+              items:
+                  - "Requisitos cadastrados no Redmine?"
+                  - "Requisitos cadastrados conforme o processo ?"
+                  - "E-mails de confirmação de requisitos/escopo anexado no Redmine"
+            - name: Planejamento
+              items:
+                  - "Foi criado o projeto no http://corp.absoluta.net/redmine"
+                  - "Foi criada a página do projeto no http://corp.absoluta.net/wiki"
+                  - "O 'Resumo do projeto' contempla o escopo e pacotes a serem entregues conforme o processo ?"
+                  - "O projeto possui Cronograma definido."
+                  - "O Cronograma contempla as fases do ciclo de vida do projeto (ANL/DSV/HLG) conforme o processo?"
+                  - "Os Riscos foram definidos?"
+                  - "O ambiente foi planejado?"
+                  - "A equipe foi alocada conforme definido no processo ? Verificar no Redmine."
+                  - "As estimativas foram definidas conforme o processo ?"
+    - name: Marcos de Análise da Primeira Entrega I
+      checklist:
+            - name: Análise Parcial
+              items:
+                  - "Especificação funcional, técnica (se existir) e roteiro de homologação seguem os padrões e formatos dos templates conforme o processo? Nota: A template possui um conteúdo sugerido que não deve ser avaliado. Os tópicos e formatação que devem seguir o padrão."
+                  - "Especificação funcional, técnica (se existir) e roteiro de homologação possuem conteúdo coerente?"
+                  - "Cada roteiro de homologação deve possuir no mínimo um caso de teste com resultado esperado."
+                  - "Avaliar se os requisitos do projeto possuem links para as respectivas especificações funcionais e vice-versa conforme definido no processo."
+    - name: Marcos de Análise da Primeira Entrega II
+      checklist:
+            - name: Analise final
+              items:
+                  - "Especificação funcional, técnica (se existir) e roteiro de homologação seguem os padrões e formatos dos templates conforme o processo? Nota: A template possui um conteúdo sugerido que não deve ser avaliado. Os tópicos e formatação que devem seguir o padrão."
+                  - "Especificação funcional, técnica (se existir) e roteiro de homologação possuem conteúdo coerente?"
+                  - "Cada roteiro de homologação deve possuir no mínimo um caso de teste com resultado esperado."
+                  - "Roteiro de Implantação segue padrão e formatos dos templates conforme o processo ? Nota: A template possui um conteúdo sugerido que não deve ser avaliado. Os tópicos e formatação que devem ser respeitados."
+                  - "Roteiro de Implantação possui conteúdo coerente."
+                  - "Avaliar se os requisitos do projeto possuem links para as respectivas especificações funcionais e vice-versa conforme definido no processo."
+            - name: Monitoramento
+              items:
+                 - "Foram executados os monitoramentos nas datas planejadas?"
+                 - "Os Problemas foram registrados e resolvidos conforme definido no processo?"
+                 - "Os riscos estão sendo monitorados?"
+                 - "Mudanças de requisitos estão sendo monitoradas? No caso de uma mudança de requisito está sendo seguido o processo?"
+                 - "O cronograma está sendo monitorado?"

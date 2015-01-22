@@ -43,10 +43,13 @@
           </div>
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
+              <!-- 
               <li><?php  echo $this->Html->link('Items', array('controller' => 'items'));?></li>
               <li><?php  echo $this->Html->link('Checklists', array('controller' => 'checklists'));?></li>
               <li><?php  echo $this->Html->link('Fases', array('controller' => 'stages'));?></li>
-              <li><?php  echo $this->Html->link('Templates', array('controller' => 'auditings'));?></li>
+              -->
+              <li><?php  echo $this->Html->link('Projetos', array('controller' => 'projects', 'action' => 'index')); ?></li>
+              <li><?php  echo $this->Html->link('Templates', array('controller' => 'templates', 'action' => 'index')); ?></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
               <li class="active"><?php echo $this->Html->link('Sair', array('controller' => 'users', 'action' => 'logout'));  ?></li>

@@ -26,7 +26,7 @@ class PagesController extends AppController {
  *
  * @var array
  */
-	public $uses = array();
+    public $uses = array();
 
 /**
  * Displays a view
@@ -35,6 +35,6 @@ class PagesController extends AppController {
  * @throws NotFoundException When the view file could not be found
  *   or MissingViewException in debug mode.
  */
-	public function home() {
+    public function home() {
     }
 }

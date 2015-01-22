@@ -1,0 +1,44 @@
+Elemento de paginacao adicionado
+
+# --------------
+# Please enter the commit message for your changes. Everything below
+# this paragraph is ignored, and an empty message aborts the commit.
+# Just close the window to accept your message.
+diff --git a/application/View/Elements/pagination.ctp b/application/View/Elements/pagination.ctp
+new file mode 100644
+index 0000000..2a4a55f
+--- /dev/null
++++ b/application/View/Elements/pagination.ctp
+@@ -0,0 +1,32 @@
++<div class="text-center">
++    <ul class="pagination">
++        <?php
++            echo $this->Paginator->prev('&laquo;',
++                                        array('tag' => 'li',
++                                              'title' => __('Previous page'),
++                                              'disabledTag' => 'span',
++                                              'escape' => false),
++                                        null,
++                                        array('tag' => 'li',
++                                              'disabledTag' => 'span',
++                                              'escape' => false,
++                                              'class' => 'disabled'));
++
++            echo $this->Paginator->numbers(array('separator' => false,
++                                                 'tag' => 'li',
++                                                 'currentTag' => 'span',
++                                                 'currentClass' => 'active'));
++
++            echo $this->Paginator->next('&raquo;',
++                                        array('tag' => 'li',
++                                              'disabledTag' => 'span',
++                                              'title' => __('Next page'),
++                                              'escape' => false),
++                                         null,
++                                         array('tag' => 'li',
++                                               'disabledTag' => 'span',
++                                               'escape' => false,
++                                               'class' => 'disabled'));
++        ?>
++    </ul>
++</div>
