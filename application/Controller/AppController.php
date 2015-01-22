@@ -35,9 +35,7 @@ class AppController extends Controller {
                 'action' => 'login'
             ),
             'authenticate' => array(
-                'Form' => array(
-                    'passwordHasher' => 'Blowfish'
-                )
+            	'Http'
             )
         )
     );
@@ -49,7 +47,7 @@ class AppController extends Controller {
         $this->layout = 'default';
         $isLogged = $this->Auth->user();
         if ($isLogged) {
-            $this->layout = 'logged';
+        	$this->layout = 'logged';
         } 
     }
 }
