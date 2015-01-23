@@ -1,4 +1,5 @@
 <h2>Gerenciamento da Qualidade</h2>
+<?php echo $this->Form->create(); ?>
 <div class="form-group">
     <label>Projeto</label>
     <input type="text" class="form-control" disabled value="<?php echo $project['name']; ?>">
@@ -6,10 +7,11 @@
 <div class="form-group">
     <label>Template</label>
     <?php echo $this->Form->select('Template',
-                                   array('1' => 'option1', '2' => 'option2'),
+                                   $templates,
                                    array('class' => 'form-control',
                                          'empty' => '-Selecione-')); ?>
 </div>
 <div class="form-group">
-   <input type="button" class="btn btn-primary" value="Gerenciar"> 
+   <input type="submit" class="btn btn-primary" value="Gerenciar"> 
 </div>
+<?php echo $this->Form->end(); ?>
