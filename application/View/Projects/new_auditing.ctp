@@ -2,11 +2,11 @@
 <?php echo $this->Form->create(); ?>
 <div class="form-group">
     <label>Projeto</label>
-    <input type="text" class="form-control" disabled value="<?php echo $project['name']; ?>">
+    <input type="text" class="form-control" disabled value="<?php echo $project['title']; ?>">
 </div>
 <div class="form-group">
     <label>Template</label>
-    <?php echo $this->Form->select('Template',
+    <?php echo $this->Form->select('Id',
                                    $templates,
                                    array('class' => 'form-control',
                                          'empty' => '-Selecione-')); ?>

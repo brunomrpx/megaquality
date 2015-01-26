@@ -9,11 +9,12 @@
            </tr> 
         </thead>
         <tbody>
+                
         <?php foreach($projects as $project): ?>
            <tr>
                 <td>
-                    <?php echo $this->Html->link($project->title,
-                                                 array('action' => 'new_auditing', $project->id)); ?>
+                    <?php echo $this->Html->link($project['title'],
+                                                 array('action' => 'new_auditing', $project['id'])); ?>
                 </td>                
                 <td>Não</td>
            </tr>
