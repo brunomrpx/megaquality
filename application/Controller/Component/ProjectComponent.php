@@ -2,32 +2,38 @@
 
 App::uses('Component', 'Controller');
 App::uses('HttpSocket', 'Network/Http');
+App::uses('API', 'Controller/Component');
+App::uses('Session', 'Component');
 
 class ProjectComponent extends Component {	
            
     private $httpSocket = null;       	 
     private $auditing = null;
+    private $auth = null;    
 	public $cookies = null;	
-	public $API = null;
+	public $API = null;		
     
-    public function __construct(ComponentCollection $collection, $settings = array()) {
+    public function __construct(ComponentCollection $collection, $settings = array()) {		    	
     	$this->httpSocket = new HttpSocket();
-    	$this->auditing = ClassRegistry::init('Auditing');    	
-    }
+    	$this->auditing = ClassRegistry::init('Auditing');
+		$this->API = new APIComponent($collection);
+		$this->auth = new AuthComponent($collection);
+		$this->cookies = $this->auth->user('cookie');				
+    }        
     
-    private function format($responseData = null) {
+    private function format($responseData = null, $callback = null) {
     	if (isset($responseData)) {
     		$responseData = json_decode($responseData, true);    		
     		if (array_key_exists('projects', $responseData)) {    			    			
     			$projects = $responseData['projects'];    		
     			foreach ($projects as &$project) {    				    			
-    				$project = $this->formatFields($project);
-    			}
+    				$project = $this->formatFields($project);    				
+    			}    			    			
     			    			
     			return $projects;
     		} else {
     			$project = $responseData['project'];
-    			$project = $this->formatFields($project);
+    			$project = $this->formatFields($project);    			
     			
     			return $project;
     		}
@@ -35,7 +41,7 @@ class ProjectComponent extends Component {
     }
 
     private function formatFields($project = null) {
-    	if (!is_null($project)) {    		
+    	if (isset($project)) {    		
 	    	$project['title'] = utf8_decode($project['title']);
 	    	$project['managed'] = $this->exists($project['id']);        	
     	}    	
@@ -54,12 +60,12 @@ class ProjectComponent extends Component {
     	return !empty($project);
     }
     
-    public function getAll() {    	
+    public function getAll() {    	    
     	$httpSocketResponse = $this->httpSocket->get(
     			$this->API->getURL('GET_ACTIVE_PROJECTS'),
     			array(),
     			array('cookies' => $this->cookies)
-    	);        
+    	);                	
     	
     	return $this->format($httpSocketResponse->body());    	
     }
