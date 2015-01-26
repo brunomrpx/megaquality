@@ -10,7 +10,6 @@ class TemplatesController extends AppController {
         );
 
     public function index() {
-       //$this->AuditingTemplate->Behaviors->attach('Containable');
        $templates = $this->AuditingTemplate->find('all');
        $this->set('templates', $templates);
     }

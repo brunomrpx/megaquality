@@ -16,7 +16,7 @@
                     <?php echo $this->Html->link($project['title'],
                                                  $project['url']); ?>
                 </td>                
-                <td>Não</td>
+                <td><?php echo $project['managed'] ? 'Sim' : 'Não'; ?></td>
            </tr>
         <?php endforeach; ?>
         </tbody>
