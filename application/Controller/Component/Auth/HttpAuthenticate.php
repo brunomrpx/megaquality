@@ -4,13 +4,13 @@ App::uses('BaseAuthenticate', 'Controller/Component/Auth');
 App::uses('HttpSocket', 'Network/Http');
 
 class HttpAuthenticate extends BaseAuthenticate {		
-	public function authenticate(CakeRequest $request, CakeResponse $response) {
+	public function authenticate(CakeRequest $request, CakeResponse $response) {						
 		$httpSocket = new HttpSocket();
 		$httpSocketResponse = $httpSocket->post(
-				'url',
+				$request->data['API']['URL'],
 				array(
-					'email' => 'email',
-					'password' => 'password'
+					'email' => $request->data['User']['username'],
+					'password' => $request->data['User']['password']
 				)
 		);	
 
