@@ -29,8 +29,8 @@ class ProjectsController extends AppController {
     
     public function new_auditing($id = null) {
     	if ($this->request->is('post')) {
-    		$templateAuditingId = $this->data['AuditingTemplate']['Id'];
-    		$items = $this->Item->getByTemplateAuditingId($templateAuditingId);
+			$auditingTemplateId = $this->data['AuditingTemplate']['Id'];
+    		$items = $this->Item->getByAuditingTemplateId($auditingTemplateId);
     	
     		$itemsToInsert = array();
     		foreach ($items as $item) {
@@ -43,12 +43,13 @@ class ProjectsController extends AppController {
     		$data = array(
     				'Auditing' => array(
     						'project_id' => $id,
-    						'auditing_template_id' => $templateAuditingId
+    						'auditing_template_id' => $auditingTemplateId
     				),
     				'AuditingsItems' => $itemsToInsert
     		);
     	
     		$this->Auditing->bindModel(array('hasMany' => array('AuditingsItems')));
+    		
     		if ($this->Auditing->saveAll($data)) {
     			$this->Session->setFlash('Template para auditoria configura com sucesso.', 'Messages/success');
     		}
@@ -62,18 +63,27 @@ class ProjectsController extends AppController {
     }
 
     public function manage($id = null) {
-    	$projects = $this->Auditing->find(
-    		'list',
-    		array(
-	    		'fields' => array(
-	    			'Auditing.project_id'		
-	    		)
-    		)
-    	);
-    	
-    	if (!in_array($id, $projects)) {
-    	} else {
-    	
+    	if ($this->request->is('post')) {
+    		debug($this->data);
     	}
+    	
+    	$auditingTemplate = $this->AuditingTemplate->find(
+    		'first', 
+    		array(
+    			'joins' => array(
+    				array(    						    				
+	    				'table' => 'auditings',
+	    				'alias' => 'Auditing',
+	    				'type' => 'INNER',
+	    				'conditions' => 'AuditingTemplate.id = Auditing.auditing_template_id',
+    				)
+    			),
+    			'conditions' => array(
+    				'Auditing.project_id' => $id
+    			)    				
+    		)
+    	);    	
+    	
+    	$this->set('auditingTemplate', $auditingTemplate);
     }
 }

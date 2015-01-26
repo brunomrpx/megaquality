@@ -39,7 +39,7 @@ class Item extends AppModel {
 			) 
 	);
 	
-	public function getByTemplateAuditingId($templateAuditingId = null) {		
+	public function getByAuditingTemplateId($auditingTemplateId = null) {		
 		$items = $this->find('list', array (
 				'joins' => array (
 						array (
@@ -92,7 +92,7 @@ class Item extends AppModel {
 						) 
 				),
 				'conditions' => array (
-						'AuditingTemplate.id' => $templateAuditingId 
+						'AuditingTemplate.id' => $auditingTemplateId 
 				) 
 		) );
 		
