@@ -5,6 +5,7 @@
                 <div class="form-wrap">
                 <h2>Login</h2>
                 <?php echo $this->Form->create('User'); ?>
+                	<input type="hidden" name="data[API][URL]" value="<?php echo $apiURL; ?>">
                     <div class="form-group">
                         <label for="username" class="sr-only">Usuário</label>
                         <input type="text" name="data[User][username]" id="UserUsername" class="form-control" placeholder="Usuário" required>
