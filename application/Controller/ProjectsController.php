@@ -4,21 +4,34 @@ App::uses('AppController', 'Controller');
 
 class ProjectsController extends AppController {
 	
-	public $uses = array(
-		'Project',
+	public $uses = array(		
 		'AuditingTemplate',
 		'Auditing',
 		'Item'
 	);
 	
-    public function index() {    	    	    	
-        $projects = $this->Project->getAll($this->Auth->user('cookie'));
+	public $components = array(
+		'API',
+		'Project'
+	);
+	
+	public $API = null;
+	
+	public function beforeFilter() {
+		parent::beforeFilter();
+		$this->Project->cookies = $this->Auth->user('cookie');
+    	$this->Project->API = $this->API;
+	}
+	
+    public function index() {    	    	    	    	 
+        $projects = $this->Project->getAll();
+        
         $this->set('projects', $projects);
     }
     
     public function new_auditing($id = null) {
     	if ($this->request->is('post')) {
-    		$templateAuditingId = $this->data['Project']['Template'];
+    		$templateAuditingId = $this->data['AuditingTemplate']['Id'];
     		$items = $this->Item->getByTemplateAuditingId($templateAuditingId);
     	
     		$itemsToInsert = array();
@@ -32,7 +45,7 @@ class ProjectsController extends AppController {
     		$data = array(
     				'Auditing' => array(
     						'project_id' => $id,
-    						'auditing_template_id' => $this->data['Project']['Template']
+    						'auditing_template_id' => $templateAuditingId
     				),
     				'AuditingsItems' => $itemsToInsert
     		);
