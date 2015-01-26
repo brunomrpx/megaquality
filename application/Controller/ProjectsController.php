@@ -15,16 +15,14 @@ class ProjectsController extends AppController {
 		'Project'
 	);
 	
-	public $API = null;
-	
-	public function beforeFilter() {
-		parent::beforeFilter();
-		$this->Project->cookies = $this->Auth->user('cookie');
-    	$this->Project->API = $this->API;
+	private function insertURL(&$project) {
+		$url = $project['managed'] ? 'manage' : 'new_auditing';
+		$project['url'] = array('action' => $url, $project['id']);			
 	}
 	
     public function index() {    	    	    	    	 
-        $projects = $this->Project->getAll();
+        $projects = $this->Project->getAll();        
+        array_walk($projects, array($this, 'insertURL'));                
         
         $this->set('projects', $projects);
     }
