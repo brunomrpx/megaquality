@@ -14,7 +14,7 @@
            <tr>
                 <td>
                     <?php echo $this->Html->link($project['title'],
-                                                 array('action' => 'new_auditing', $project['id'])); ?>
+                                                 $project['url']); ?>
                 </td>                
                 <td>Não</td>
            </tr>
