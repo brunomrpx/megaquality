@@ -15,6 +15,7 @@ class ItemsController extends AppController {
  * @var array
  */
     public $components = array('Paginator', 'Session');
+    public $uses = array('Item', 'AuditingItem');
 
 /**
  * index method
@@ -58,6 +59,25 @@ class ItemsController extends AppController {
             }
         }
     }
+    
+    public function update_status($id = null) {    	    	    	    	
+    	if ($this->request->is('ajax')) {
+    		$status = $this->request->data['status'];
+    		
+    		$status = $status == "true" ? "1" : "0"; 
+    		
+    		$auditingItemData = $this->AuditingItem->find('first', array('conditions' => array('item_id' => $id)));
+    		$auditingItemData['AuditingItem']['status'] = $status;
+    		 
+    		 if ($this->AuditingItem->saveAll($auditingItemData)) {
+    		 	echo "true";
+    		 } else {
+    		 	echo "false";
+    		 }
+    		
+    		exit();
+    	}
+    }
 
 /**
  * edit method
@@ -66,7 +86,7 @@ class ItemsController extends AppController {
  * @param string $id
  * @return void
  */
-    public function edit($id = null) {
+    public function edit($id = null) {    	    	    	    	
         if (!$this->Item->exists($id)) {
             throw new NotFoundException(__('Invalid item'));
         }

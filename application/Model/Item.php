@@ -29,15 +29,19 @@ class Item extends AppModel {
 					'limit' => '',
 					'offset' => '',
 					'finderQuery' => '' 
-			),
-			'Auditing' => array (
-					'className' => 'Auditing',
-					'joinTable' => 'auditings_items',
-					'foreignKey' => 'item_id',
-					'associationForeignKey' => 'auditing_id',
-					'unique' => 'keepExisting' 
 			) 
 	);
+	
+	public $hasMany = array('AuditingItem');	
+	
+	public function afterFind($results, $primary = false) {				
+		$auditingItem = ClassRegistry::init('AuditingItem');
+		$status = $auditingItem->find('first', array('fields' => 'status', 'conditions' => array('item_id' => $results[0]['Item']['id'])));
+		$status = $status['AuditingItem']['status'];
+		
+		$results[0]['Item']['status'] = $status;
+		return $results;
+	}
 	
 	public function getByAuditingTemplateId($auditingTemplateId = null) {		
 		$items = $this->find('list', array (

@@ -51,7 +51,9 @@ class ProjectsController extends AppController {
     		$this->Auditing->bindModel(array('hasMany' => array('AuditingsItems')));
     		
     		if ($this->Auditing->saveAll($data)) {
-    			$this->Session->setFlash('Template para auditoria configura com sucesso.', 'Messages/success');
+    			$this->Session->setFlash('Template para auditoria configurado com sucesso.', 'Messages/success');
+    			
+    			return $this->redirect(array('action' => 'manage', $id));
     		}
     	}
     	
@@ -62,11 +64,7 @@ class ProjectsController extends AppController {
     	$this->set('templates', $templates);    	 
     }
 
-    public function manage($id = null) {
-    	if ($this->request->is('post')) {
-    		debug($this->data);
-    	}
-    	
+    public function manage($id = null) {    	    	
     	$auditingTemplate = $this->AuditingTemplate->find(
     		'first', 
     		array(

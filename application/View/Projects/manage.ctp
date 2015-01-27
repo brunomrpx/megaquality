@@ -19,7 +19,7 @@
 		    <tr>
 		    	<td width="100%"><?php echo $item['description']; ?></td>
 		    	<td>
-		    		<input type="checkbox" class="form-control" name="data[AuditingsItems][Item][]" value="<?php echo $item['id'] ?>">
+		    		<input type="checkbox" class="form-control item" name="data[AuditingsItems][Item][]" value="<?php echo $item['id'] ?>" <?php echo $item['status'] == '1' ? 'checked' : ''; ?>>
 		    	</td>
 		    </tr>
 		    <?php endforeach;?>		
@@ -27,5 +27,40 @@
 	</tbody>
 </table>		
 <?php endforeach;?>
-<input type="submit" class="btn btn-primary" value="Salvar">
 <?php echo $this->Form->end(); ?>
+
+
+<script>
+
+function Item(element) {
+	var id = element.value,
+		status = null; 
+	
+	element.addEventListener('CheckboxStateChange', save);	
+	
+	function save() {
+
+		console.log(element);
+		status = element.checked.toString();		
+		
+		var url = '../../items/update_status/' + id;
+		
+		$.post(url,  { status: status })
+		 .done(function(inserted) {
+			if (inserted == "true") {
+				console.log("Item atualizado com sucesso.");
+			} else {
+				console.log("Falha...");
+			}
+		 });
+	}	
+}
+
+var items = document.querySelectorAll(".item");
+// var item = new Item(items[0]);
+
+for (var i = 0; i < items.length; i++) {
+	new Item(items[i]);
+}
+
+</script>
