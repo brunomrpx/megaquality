@@ -60,21 +60,26 @@ class ItemsController extends AppController {
         }
     }
     
-    public function update_status($id = null) {    	    	    	    	
+    public function update_status($id = null) {
     	if ($this->request->is('ajax')) {
     		$status = $this->request->data['status'];
+    		$projectId = $this->request->data['projectId'];
     		
     		$status = $status == "true" ? "1" : "0"; 
     		
-    		$auditingItemData = $this->AuditingItem->find('first', array('conditions' => array('item_id' => $id)));
+    		$auditingItemData = $this->AuditingItem->find(
+    			'first', 
+    			array(
+    				'conditions' => array(
+    						'item_id' => $id,
+    						'project_id' => $projectId
+    				)    					
+    			)
+    		);   
+    		 		
     		$auditingItemData['AuditingItem']['status'] = $status;
     		 
-    		 if ($this->AuditingItem->saveAll($auditingItemData)) {
-    		 	echo "true";
-    		 } else {
-    		 	echo "false";
-    		 }
-    		
+    		echo $this->AuditingItem->saveAll($auditingItemData);    		     		
     		exit();
     	}
     }
