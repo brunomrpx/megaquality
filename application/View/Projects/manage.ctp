@@ -1,4 +1,6 @@
-<?php echo $this->Form->create(); ?>
+<h2><?php echo $project['title']; ?></h2>
+<hr>
+<input type="hidden" value="<?php echo $project['id']; ?>" id="projectId">
 <?php foreach ($auditingTemplate['Stage'] as $stage): ?>
 <div>
 	<h3><?php echo $stage['name']; ?></h3>
@@ -18,8 +20,15 @@
 		    <?php foreach ($checklist['Item'] as $item): ?>
 		    <tr>
 		    	<td width="100%"><?php echo $item['description']; ?></td>
-		    	<td>
-		    		<input type="checkbox" class="form-control item" name="data[AuditingsItems][Item][]" value="<?php echo $item['id'] ?>" <?php echo $item['status'] == '1' ? 'checked' : ''; ?>>
+		    	<td class="text-center">
+		    		<?php foreach ($item['AuditingItem'] as $auditingItem) :?>		    					    			
+		    			<?php if ($auditingItem['Auditing']['project_id'] === $project['id']) : ?>
+		    				<?php $status = $auditingItem['status']; break;?>
+		    			<?php endif; ?>		    			
+		    		<?php endforeach; ?>
+		    		<input type="checkbox" class="form-control item" name="data[AuditingsItems][Item][]" 
+		    			   value="<?php echo $item['id'] ?>" <?php echo $status ? 'checked' : ''; ?>>
+		    		<div class="three-quarters hide"></div>
 		    	</td>
 		    </tr>
 		    <?php endforeach;?>		
@@ -27,40 +36,17 @@
 	</tbody>
 </table>		
 <?php endforeach;?>
-<?php echo $this->Form->end(); ?>
-
-
+<?php echo $this->Html->script('item'); ?>
 <script>
-
-function Item(element) {
-	var id = element.value,
-		status = null; 
-	
-	element.addEventListener('CheckboxStateChange', save);	
-	
-	function save() {
-
-		console.log(element);
-		status = element.checked.toString();		
-		
-		var url = '../../items/update_status/' + id;
-		
-		$.post(url,  { status: status })
-		 .done(function(inserted) {
-			if (inserted == "true") {
-				console.log("Item atualizado com sucesso.");
-			} else {
-				console.log("Falha...");
-			}
-		 });
-	}	
-}
-
 var items = document.querySelectorAll(".item");
-// var item = new Item(items[0]);
+var projectId = document.querySelector("#projectId").value;
+var item = null;
 
-for (var i = 0; i < items.length; i++) {
-	new Item(items[i]);
+for (var i = 0; i < items.length; i++) {	
+	item = new Item({
+		id: items[i].value,
+		element: items[i],
+		projectId: projectId
+	});	
 }
-
 </script>

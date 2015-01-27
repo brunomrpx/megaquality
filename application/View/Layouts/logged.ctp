@@ -22,6 +22,8 @@
           echo $this->fetch('script');
           echo $this->Html->script('jquery-2.1.3.min.js');
           echo $this->Html->script('bootstrap.min.js');
+          echo $this->Html->css('http://css-spinners.com/css/spinner/three-quarters.css');
+          // Bootstrap Select
           echo $this->Html->css('http://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css');
           echo $this->Html->script('http://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js');
       ?>

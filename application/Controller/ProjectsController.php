@@ -4,7 +4,8 @@ App::uses('AppController', 'Controller');
 
 class ProjectsController extends AppController {
 	
-	public $uses = array(		
+	public $uses = array(	
+		'AuditingItem',	
 		'AuditingTemplate',
 		'Auditing',
 		'Item'
@@ -29,7 +30,8 @@ class ProjectsController extends AppController {
     
     public function new_auditing($id = null) {
     	if ($this->request->is('post')) {
-			$auditingTemplateId = $this->data['AuditingTemplate']['Id'];
+			$auditingTemplateId = $this->data['AuditingItem']['Id'];			
+			
     		$items = $this->Item->getByAuditingTemplateId($auditingTemplateId);
     	
     		$itemsToInsert = array();
@@ -67,21 +69,24 @@ class ProjectsController extends AppController {
     public function manage($id = null) {    	    	
     	$auditingTemplate = $this->AuditingTemplate->find(
     		'first', 
-    		array(
+    		array(    			
     			'joins' => array(
     				array(    						    				
 	    				'table' => 'auditings',
 	    				'alias' => 'Auditing',
 	    				'type' => 'INNER',
 	    				'conditions' => 'AuditingTemplate.id = Auditing.auditing_template_id',
-    				)
+    				)    				
     			),
     			'conditions' => array(
     				'Auditing.project_id' => $id
     			)    				
     		)
-    	);    	
+    	);
     	
+    	$project = $this->Project->getById($id);    	
+
+    	$this->set('project', $project);
     	$this->set('auditingTemplate', $auditingTemplate);
     }
 }

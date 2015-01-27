@@ -32,16 +32,7 @@ class Item extends AppModel {
 			) 
 	);
 	
-	public $hasMany = array('AuditingItem');	
-	
-	public function afterFind($results, $primary = false) {				
-		$auditingItem = ClassRegistry::init('AuditingItem');
-		$status = $auditingItem->find('first', array('fields' => 'status', 'conditions' => array('item_id' => $results[0]['Item']['id'])));
-		$status = $status['AuditingItem']['status'];
-		
-		$results[0]['Item']['status'] = $status;
-		return $results;
-	}
+	public $hasMany = array('AuditingItem');		
 	
 	public function getByAuditingTemplateId($auditingTemplateId = null) {		
 		$items = $this->find('list', array (
