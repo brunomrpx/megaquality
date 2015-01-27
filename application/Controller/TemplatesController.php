@@ -17,10 +17,12 @@ class TemplatesController extends AppController {
     public function insert() {
         if ($this->request->is('post')) {
             $templateName = $this->request->data['Template']['Name'];
-            if ($this->TemplateBuilder->insertTemplate($templateName)) {
+            try {
+            	$this->TemplateBuilder->insertTemplate($templateName);
                 $this->Session->setFlash('Template inserido com sucesso.', 'Messages/success');
-            } else {
-                $this->Session->setFlash('Erro ao inserir template. Tente novamente.', 'Messages/error');
+            } catch(Exception $exception) {
+                $this->Session->setFlash(sprintf('Erro ao inserir template. %s', $exception->getMessage()), 'Messages/error');
+                return $this->redirect(array('action' => 'insert'));                
             } 
             
             return $this->redirect(array('action' => 'index'));

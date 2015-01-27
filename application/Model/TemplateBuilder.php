@@ -46,6 +46,24 @@ class TemplateBuilder extends AppModel {
         public function insertTemplate($name) {
             $templatePath = sprintf('%sAuditing_Templates/%s.yaml', APP, $name);
             $templateArray = $this->load($templatePath);
+            
+            if (!is_array($templateArray)) {
+            	throw new Exception('Conteudo invalido.');
+            }            
+                        
+            $insertedTemplate = $this->auditingTemplate->find(
+            	'first', 
+            	array(
+            		'conditions' => array(
+            			'AuditingTemplate.name' => $templateArray['name']
+            		)
+            	)
+            );
+			
+            if ($insertedTemplate) {
+            	throw new Exception('O template já existe.');	
+            }                        
+            
             $inserted = false;
             $this->dataSource->begin();
             
