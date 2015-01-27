@@ -9,11 +9,13 @@
   <?php foreach($templates as $key => $template): ?>
   <div class="panel panel-default">
     <div class="panel-heading" role="tab" id="<?php printf('heading%s', $key); ?>">
-      <h4 class="panel-title text-center">
+      <h3 class="panel-title text-center">
         <a data-toggle="collapse" data-parent="#accordion" href="<?php printf('#collapse%s', $key); ?>" aria-expanded="true" aria-controls="<?php printf('heading%s', $key); ?>">
             <?php echo $template['AuditingTemplate']['name']; ?>
         </a>
-      </h4>
+      </h3>      
+      <?php echo $this->Html->link('Editar', array('action' => 'edit', $template['AuditingTemplate']['id']), array('class' => 'btn btn-primary')) ?>
+      <?php echo $this->Html->link('Excluir', array('action' => 'delete', $template['AuditingTemplate']['id']), array('class' => 'btn btn-danger')) ?>
     </div>
     <div id="<?php printf('collapse%s', $key); ?>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="<?php printf('heading%s', $key); ?>">
       <div class="panel-body">

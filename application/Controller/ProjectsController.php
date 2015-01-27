@@ -80,7 +80,8 @@ class ProjectsController extends AppController {
     			),
     			'conditions' => array(
     				'Auditing.project_id' => $id
-    			)    				
+    			),
+    			'recursive' => 5
     		)
     	);
     	

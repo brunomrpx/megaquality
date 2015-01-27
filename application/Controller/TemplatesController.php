@@ -10,8 +10,18 @@ class TemplatesController extends AppController {
         );
 
     public function index() {
-       $templates = $this->AuditingTemplate->find('all');
+       $templates = $this->AuditingTemplate->find('all', array('recursive' => 4));       
        $this->set('templates', $templates);
+    }
+    
+    public function edit($id = null) {
+    	if (!isset($id)) {
+    		return $this->redirect(array('action' => 'index'));
+    	}
+    	
+    	$auditingTemplate = $this->AuditingTemplate->find('first', array('conditions' => array('AuditingTemplate.id' => $id)));
+    	    	
+    	$this->set('auditingTemplate', $auditingTemplate);
     }
     
     public function insert() {

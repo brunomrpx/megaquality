@@ -34,7 +34,10 @@ class AuditingTemplate extends AppModel {
     );
     
     public function beforeFind($query) {
-        $query['recursive'] = 5;
+    	if (!isset($query['recursive'])) {
+       		$query['recursive'] = 4;
+    	}    	    	
+    	
         return $query;
     }
 }
