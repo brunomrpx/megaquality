@@ -73,6 +73,21 @@ class ChecklistsController extends AppController {
         if (!$this->Checklist->exists($id)) {
             throw new NotFoundException(__('Invalid checklist'));
         }
+
+        if ($this->request->is('ajax')) {
+            $data = $this->request->data;
+            $name = $data['editedContent'];
+            $checklist = array(
+                'Checklist' => array(
+                    'id' => $id,
+                    'name' => $name
+                )
+            );
+
+            echo $this->Checklist->save($checklist) ? true : false;
+            die();
+        }
+
         if ($this->request->is(array('post', 'put'))) {
             if ($this->Checklist->save($this->request->data)) {
                 $this->Session->setFlash('Checklist salvo com sucesso.', 'Messages/success');

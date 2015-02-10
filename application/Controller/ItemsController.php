@@ -95,6 +95,21 @@ class ItemsController extends AppController {
         if (!$this->Item->exists($id)) {
             throw new NotFoundException(__('Invalid item'));
         }
+
+        if ($this->request->is('ajax')) {
+            $data = $this->request->data;
+            $description = $data['editedContent'];
+            $item = array(
+                'Item' => array(
+                    'id' => $id,
+                    'description' => $description
+                )
+            );
+
+            echo $this->Item->save($item) ? true : false;
+            die();
+        }
+
         if ($this->request->is(array('post', 'put'))) {
             if ($this->Item->save($this->request->data)) {
                 $this->Session->setFlash('Item alterado com sucesso.', 'Messages/success');

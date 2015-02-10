@@ -71,6 +71,21 @@ class StagesController extends AppController {
 		if (!$this->Stage->exists($id)) {
 			throw new NotFoundException(__('Invalid stage'));
 		}
+
+        if ($this->request->is('ajax')) {
+            $data = $this->request->data;
+            $name = $data['editedContent'];
+            $stage = array(
+                'Stage' => array(
+                    'id' => $id,
+                    'name' => $name
+                )
+            );
+
+            echo $this->Stage->save($stage) ? true : false;
+            die();
+        }
+
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Stage->save($this->request->data)) {
 				$this->Session->setFlash(__('The stage has been saved.'));
