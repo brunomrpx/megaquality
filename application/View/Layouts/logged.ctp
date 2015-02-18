@@ -40,8 +40,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <!-- <a class="navbar-brand" href="#">Megaquality</a> -->
-            <?php  echo $this->Html->link('Megaquality', array('controller' => '/'), array('class' => 'navbar-brand'));?>
+            <span class='navbar-brand'>Megaquality</span>
           </div>
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
