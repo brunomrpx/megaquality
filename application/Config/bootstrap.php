@@ -1,4 +1,7 @@
 <?php
+
+Configure::write('fake_data', true);
+
 /**
  * This file is loaded automatically by the app/webroot/index.php file after core.php
  *

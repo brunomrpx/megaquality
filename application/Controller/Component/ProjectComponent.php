@@ -69,7 +69,10 @@ class ProjectComponent extends Component {
     			array('cookies' => $this->cookies)
     	);                	
 
-        return $this->format($this->projectsString);
+        if (Configure::read('fake_data')) {
+            return $this->format($this->projectsString);
+        }
+
     	return $this->format($httpSocketResponse->body());    	
     }
     
@@ -81,13 +84,13 @@ class ProjectComponent extends Component {
 		);
 
         $projects = $this->format($this->projectsString);
-        foreach ($projects as $project) {
-            if ($project['id'] == $id) {
-                return $project;
+        if (Configure::read('fake_data')) {
+            foreach ($projects as $project) {
+                if ($project['id'] == $id) {
+                    return $project;
+                }
             }
         }
-        
-        
 		
 		return $this->format($httpSocketResponse->body());
     }

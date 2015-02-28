@@ -3,7 +3,7 @@
 App::uses('Component', 'Controller');
 
 class APIComponent extends Component {		
-	private $baseURL = 'http://api/';
+	private $baseURL = 'http://dsv.absoluta.net/~luiz.cunha/gp-zend/public/api/';
 	private $services = array(					
 		'GET_ACTIVE_PROJECTS' => 'projects',			
 		'GET_PROJECT_BY_ID' => 'projects/#id#',
