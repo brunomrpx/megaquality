@@ -23,6 +23,20 @@ class TemplatesController extends AppController {
     	    	
     	$this->set('auditingTemplate', $auditingTemplate);
     }
+
+    public function delete($id = null) {
+        if (!isset($id)) {
+            return $this->redirect(array('action' => 'index'));
+        }
+
+        if ($this->AuditingTemplate->delete($id, true)) {
+            $this->Session->setFlash('Template deletado com sucesso.', 'Messages/success');
+        } else {
+            $this->Session->setFlash('Erro ao deletar Template. Tente novamente.', 'Messages/error');
+        }
+
+        return $this->redirect(array('action' => 'index'));
+    }
     
     public function insert() {
         if ($this->request->is('post')) {

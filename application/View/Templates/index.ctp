@@ -15,7 +15,7 @@
         </a>
       </h3>      
       <?php echo $this->Html->link('Editar', array('action' => 'edit', $template['AuditingTemplate']['id']), array('class' => 'btn btn-primary')) ?>
-      <?php echo $this->Html->link('Excluir', array('action' => 'delete', $template['AuditingTemplate']['id']), array('class' => 'btn btn-danger')) ?>
+      <?php echo $this->Html->link('Excluir', array('action' => 'delete', $template['AuditingTemplate']['id']), array('class' => 'btn btn-danger'), __('Deseja deletar o template # %s?', $template['AuditingTemplate']['id'])) ?>
     </div>
     <div id="<?php printf('collapse%s', $key); ?>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="<?php printf('heading%s', $key); ?>">
       <div class="panel-body">
