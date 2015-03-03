@@ -83,12 +83,12 @@ CREATE TABLE IF NOT EXISTS `db_megaquality`.`checklists_items` (
   CONSTRAINT `fk_checklists_items_checklist`
     FOREIGN KEY (`checklist_id`)
     REFERENCES `db_megaquality`.`checklists` (`id`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_checklists_items_item`
     FOREIGN KEY (`item_id`)
     REFERENCES `db_megaquality`.`items` (`id`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
@@ -108,12 +108,12 @@ CREATE TABLE IF NOT EXISTS `db_megaquality`.`stages_checklists` (
   CONSTRAINT `fk_stages_checklists_stage`
     FOREIGN KEY (`stage_id`)
     REFERENCES `db_megaquality`.`stages` (`id`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_stages_checklists_checklist`
     FOREIGN KEY (`checklist_id`)
     REFERENCES `db_megaquality`.`checklists` (`id`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
@@ -145,12 +145,12 @@ CREATE TABLE IF NOT EXISTS `db_megaquality`.`auditings_template_stages` (
   CONSTRAINT `fk_auditings_template_stages_auditing`
     FOREIGN KEY (`auditing_template_id`)
     REFERENCES `db_megaquality`.`auditings_template` (`id`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_auditings_template_stages_stage`
     FOREIGN KEY (`stage_id`)
     REFERENCES `db_megaquality`.`stages` (`id`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
@@ -169,7 +169,7 @@ CREATE TABLE IF NOT EXISTS `db_megaquality`.`auditings` (
   CONSTRAINT `fk_auditings_auditings_template`
     FOREIGN KEY (`auditing_template_id`)
     REFERENCES `db_megaquality`.`auditings_template` (`id`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
@@ -190,12 +190,12 @@ CREATE TABLE IF NOT EXISTS `db_megaquality`.`auditings_items` (
   CONSTRAINT `fk_auditings_items_item`
     FOREIGN KEY (`item_id`)
     REFERENCES `db_megaquality`.`items` (`id`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_auditings_items_auditing`
     FOREIGN KEY (`auditing_id`)
     REFERENCES `db_megaquality`.`auditings` (`id`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
