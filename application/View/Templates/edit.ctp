@@ -19,6 +19,7 @@
     <?php endforeach;?>
 <?php endforeach;?>
 </div>
+<?php echo $this->Html->link('&larr; Voltar para a listagem', array('action' => 'index'), array('escape' => false)); ?>
 <?php echo $this->Html->script('editable-item'); ?>
 
 <script>
