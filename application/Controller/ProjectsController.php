@@ -65,6 +65,28 @@ class ProjectsController extends AppController {
     	$this->set('project', $project);
     	$this->set('templates', $templates);    	 
     }
+    
+    public function delete_auditing($projectId = null) {
+       if (is_null($projectId)) {
+           return $this->redirect(array('action' => 'index'));
+       }
+
+       $auditingToDelete = $this->Auditing->find(
+            'first', 
+            array(
+                'fields' => 'id',
+                'conditions' => array('project_id' => $projectId)
+            )
+       );
+
+       if ($this->Auditing->delete($auditingToDelete['Auditing']['id'])) {
+           $this->Session->setFlash('Gerenciamento cancelado com sucesso.', 'Messages/success');
+       } else {
+           $this->Session->setFlash('Erro ao cancelar gerenciamento.', 'Messages/error');
+       }
+
+       return $this->redirect(array('action' => 'index'));
+    }
 
     public function manage($id = null) {    	    	
     	$auditingTemplate = $this->AuditingTemplate->find(

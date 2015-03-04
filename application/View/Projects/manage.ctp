@@ -1,9 +1,19 @@
 <h2><?php echo $project['title']; ?></h2>
 <hr>
+
+<?php
+echo $this->Html->link(
+    'Cancelar Gerenciamento',
+    'delete_auditing/' . $project['id'],
+    array('class' => 'btn btn-danger pull-right'),
+    'Deseja cancelar o gerenciamento deste projeto?'
+)
+?>
+
 <input type="hidden" value="<?php echo $project['id']; ?>" id="projectId">
 <?php foreach ($auditingTemplate['Stage'] as $stage): ?>
 <div>
-	<h3><?php echo $stage['name']; ?></h3>
+	<h3 class='stage-name'><?php echo $stage['name']; ?></h3>
 </div>
 <table class="table table-hover table-responsive table-bordered">
 	<thead>
@@ -36,6 +46,7 @@
 	</tbody>
 </table>		
 <?php endforeach;?>
+<?php echo $this->Html->link('&larr; Voltar para a listagem', array('action' => 'index'), array('escape' => false)); ?>
 <?php echo $this->Html->script('item'); ?>
 <script>
 var items = document.querySelectorAll(".item");
