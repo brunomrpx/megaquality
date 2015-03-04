@@ -1,3 +1,4 @@
+<p>Template utilizado: <strong><?php echo $auditingTemplate['AuditingTemplate']['name']; ?></strong></p>
 <h2><?php echo $project['title']; ?></h2>
 <hr>
 
