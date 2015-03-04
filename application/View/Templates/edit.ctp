@@ -1,4 +1,6 @@
-<h2><?php echo $auditingTemplate['AuditingTemplate']['name']; ?></h2>
+<div class="input-group">
+    <h2 class="editable-item" data-type="templates" data-id="<?php echo $auditingTemplate['AuditingTemplate']['id']; ?>"><?php echo $auditingTemplate['AuditingTemplate']['name']; ?></h2>
+</div>
 <hr>
 <div class="edit-content">	
 <?php foreach ($auditingTemplate['Stage'] as $stage): ?>

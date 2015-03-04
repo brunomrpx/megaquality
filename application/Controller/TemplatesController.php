@@ -18,6 +18,20 @@ class TemplatesController extends AppController {
     	if (!isset($id)) {
     		return $this->redirect(array('action' => 'index'));
     	}
+
+        if ($this->request->is('ajax')) {
+            $data = $this->request->data;
+            $name = $data['editedContent'];
+            $auditingTemplate = array(
+                'AuditingTemplate' => array(
+                    'id' => $id,
+                    'name' => $name
+                )
+            );
+
+            echo $this->AuditingTemplate->save($auditingTemplate) ? true : false;
+            die();
+        }
     	
     	$auditingTemplate = $this->AuditingTemplate->find('first', array('conditions' => array('AuditingTemplate.id' => $id)));
     	    	
