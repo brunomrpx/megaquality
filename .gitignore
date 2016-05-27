@@ -1,7 +1,1 @@
-*.txt
 *.swp
-*.log
-*.bak
-
-# Diretório temporário
-/application/tmp/
