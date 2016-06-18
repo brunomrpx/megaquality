@@ -18,8 +18,9 @@ function AuthenticationService($q) {
     if (!_logoutMethod) {
       throw Error('Logout method is not defined')
     }
-    return $q.when(_logoutMethod).then(() => {
+    return $q.when(_logoutMethod).then((response) => {
       this.isAuthenticated = false
+      return response
     })
   }
 
@@ -32,8 +33,9 @@ function AuthenticationService($q) {
     if (!_loginMethod) {
       throw Error('Login method is not defined')
     }
-    return $q.when(_loginMethod(params)).then(() => {
+    return $q.when(_loginMethod(params)).then((response) => {
       this.isAuthenticated = true
+      return response
     })
   }
 }
